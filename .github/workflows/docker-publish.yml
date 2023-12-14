@@ -14,7 +14,7 @@ on:
 env:
   IMAGE_NAME: testmass/localtesting-welcome
   IMAGE_TAG: test.${{ github.event.inputs.tag }}
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_USERNAME: testmass
 
 jobs:
   build_and_publish:
