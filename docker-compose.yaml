@@ -2,6 +2,7 @@ version: '3'
 
 services:
   localtest:
+    container_name: localtest
     build:
       context: .
       dockerfile: Dockerfile
