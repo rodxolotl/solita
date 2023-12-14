@@ -10,8 +10,8 @@ on:
 env:
   IMAGE_NAME: rodxolotl/localtesting-welcome
   IMAGE_TAG: test.${{ github.event.inputs.tag }}
-  DOCKER_TOKEN: ${{ env.DOCKER_TOKEN }}
-  DOCKER_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+  DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
   build_and_publish:
