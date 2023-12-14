@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  localtest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: localtesting/welcome:latest 
+    ports:
+      - "8000:8000"
+
