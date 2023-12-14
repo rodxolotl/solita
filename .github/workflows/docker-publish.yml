@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  IMAGE_NAME: rodxolotl/localtesting-welcome
+  IMAGE_NAME: testmass/localtesting-welcome
   IMAGE_TAG: test.${{ github.event.inputs.tag }}
 
 jobs:
