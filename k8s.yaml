@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localtest-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: localtest
+  template:
+    metadata:
+      labels:
+        app: localtest
+    spec:
+      containers:
+        - name: localtest
+          image: testmass/localtesting-welcome:test.v1.0.18
+          env:
+            - name: SENTRY_ENVIRONMENT
+              valueFrom:
+                secretKeyRef:
+                  name: localtest-secret
+                  key: SENTRY_ENVIRONMENT
+      imagePullSecrets:
+        - name: container-registry-dockerhub
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: localtest-service
+spec:
+  type: NodePort
+  selector:
+    app: localtest
+  ports:
+    - port: 8000
+      targetPort: 8000
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: localtest-secret
+type: Opaque
+data:
+  SENTRY_ENVIRONMENT: c3RhZ2luZw==
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: localtest-ingress
+spec:
+  rules:
+  - host: localtest.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: localtest-service
+            port:
+              number: 8000
+
+      
