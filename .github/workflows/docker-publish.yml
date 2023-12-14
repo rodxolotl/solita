@@ -9,7 +9,7 @@ on:
 
 env:
   IMAGE_NAME: rodxolotl/localtesting-welcome
-  IMAGE_TAG: v1.${{ github.event.inputs.tag }}
+  IMAGE_TAG: test.${{ github.event.inputs.tag }}
 
 jobs:
   build_and_publish:
