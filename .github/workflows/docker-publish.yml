@@ -23,9 +23,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker buildx create --use
-        docker buildx inspect
         docker buildx build --platform linux/amd64,linux/arm64 -t localtesting-welcome:latest .
-        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         docker tag localtesting-welcome:latest rodxolotl/localtesting-welcome:${{ github.event.inputs.tag }}
+        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         docker push rodxolotl/localtesting-welcome:${{ github.event.inputs.tag }}
