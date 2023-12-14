@@ -27,5 +27,5 @@ jobs:
         docker buildx inspect
         docker buildx build --platform linux/amd64,linux/arm64 -t rodxolotl/localtesting-welcome:latest -t rodxolotl/localtesting-welcome:${{ github.event.inputs.tag }} .
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-        docker push testing/welcome:latest
-        docker push testing/welcome:${{ github.event.inputs.tag }}
+        docker push rodxolotl/localtesting-welcome:latest
+        docker push rodxolotl/localtesting-welcome:${{ github.event.inputs.tag }}
