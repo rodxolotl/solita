@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: localtesting/welcome:latest 
+    image: rodxolotl/localtesting-welcome:latest 
     ports:
       - "8000:8000"
 
